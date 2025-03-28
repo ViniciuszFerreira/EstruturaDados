@@ -1,55 +1,51 @@
-
-
-
 #include <iostream>
 
 using namespace std;
 
-int main()
-{
-    float pe, desconto, acrescimo;
-    int cp, menu;
-    cout << "INFORME O PRECO DA ETIQUETA:\n";
-    cin >> pe;
-    cout << "--------------------------------------------------------\n";
-    cout << "INFORME A CONDICAO DE PAGAMENTO:\n";
-    cout << "[1] - A VISTA EM DINHEIRO OU CHEQUE, COM 10% DE DESCONTO\n";
-    cout << "[2] - A VISTA COM CARTAO DE CREDITO, COM 5% DE DESCONTO\n";
-    cout << "[3] - EM 2 VEZES, PRECO NORMAL DE ETIQUETA SEM JUROS\n";
-    cout << "[4] - EM 3 VEZES, PRECO DE ETIQUETA COM ACRESCIMO DE 10%\n";
-    cout << "[0] - SAIR\n";
-    cout << "--------------------------------------------------------\n";
-    cin >> menu;
-    while (menu != 0){
-        switch(menu){
-            case 1:
-                desconto = (pe * 10) / 100;
-                cout << "DESCONTO DE 10% =================================== " << desconto << "\n";
-                cout << "VALOR COM DESCONTO ================================ " << pe - desconto << "\n";
-                menu = 0;
-            break;
-            case 2:
-                desconto = (pe * 5) / 100;
-                cout << "DESCONTO DE 5% ======================================== " << desconto << "\n";
-                cout << "VALOR COM DESCONTO ==================================== " << pe - desconto << "\n";
-                menu = 0;
-                break;
-            case 3:
-                cout << "EM 2 VEZES, PRECO NORMAL DE ETIQUETA SEM JUROS ======== " << pe << "\n";
-                cout << "VALOR DAS PARCELAS ==================================== " << pe / 2 << endl;
-                 menu = 0;
-                break;
-            case 4:
-                acrescimo = (pe * 10) / 100;
-                cout << "EM 3 VEZES, PRECO DE ETIQUETA COM ACRESCIMO DE 10% ==== " << pe + acrescimo << "\n";
-                cout << "VALOR DAS PARCELAS ==================================== " << (pe + acrescimo) / 3 << endl;
-                menu = 0;
-                break;
-            default:
-                cout << "CODIGO INVALIDO";
-                menu = 0;
-                break;
+int main() {
+    int idade, op;
+    int totalPessoas = 0, somaIdades = 0;
+    int contOp1 = 0, contOp2 = 0, contOp3 = 0, contOp4 = 0;
+
+    cout << "Digite a idade e a opinião (1-Ótimo, 2-Bom, 3-Regular, 4-Ruim). Digite idade negativa para sair.\n";
+
+    while (true) {
+        cout << "Idade: ";
+        cin >> idade;
+
+        if (idade < 0) break; // Encerra a entrada de dados
+
+        cout << "Opinião: ";
+        cin >> op;
+
+        if (op < 1 || op > 4) {
+            cout << "Opinião inválida! Digite um valor entre 1 e 4.\n";
+            continue;
+        }
+
+        totalPessoas++;
+        somaIdades += idade;
+
+        switch (op) {
+            case 1: contOp1++; break;
+            case 2: contOp2++; break;
+            case 3: contOp3++; break;
+            case 4: contOp4++; break;
         }
     }
+
+    if (totalPessoas > 0) {
+        cout << "\nResultados da pesquisa:\n";
+        cout << "A. Total de pessoas que responderam: " << totalPessoas << endl;
+        cout << "B. Média de idade: " << (double)somaIdades / totalPessoas << endl;
+        cout << "C. Porcentagem de cada resposta:\n";
+        cout << "   Ótimo: " << (contOp1 * 100.0 / totalPessoas) << "%\n";
+        cout << "   Bom: " << (contOp2 * 100.0 / totalPessoas) << "%\n";
+        cout << "   Regular: " << (contOp3 * 100.0 / totalPessoas) << "%\n";
+        cout << "   Ruim: " << (contOp4 * 100.0 / totalPessoas) << "%\n";
+    } else {
+        cout << "Nenhuma resposta foi registrada.\n";
+    }
+
     return 0;
 }
