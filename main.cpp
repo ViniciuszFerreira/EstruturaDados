@@ -1,24 +1,28 @@
+
+
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    float numHoras, salMin, salReceber;
-    float horaTrab, salBruto, imposto;
+    float salario, novoSalario;
+    int reajuste;
+    cout << "INFORME O SALARIO: ";
+    cin >> salario;
+    if (salario < 1000){
+        reajuste = 15;
+    }
+    else if (salario <= 1500){
+        reajuste = 10;
+    }
+    else{
+        reajuste = 5;
+    }
 
-    cout << "Digite o número de horas trabalhadas: " << endl;
-    cin >> numHoras;
-    cout << "Digite o valor do salário mínimo: " << endl;
-    cin >> salMin;
-
-    horaTrab = salMin / 2;
-    salBruto = numHoras * horaTrab;
-    imposto = salBruto * 3/100;
-    salReceber = salBruto - imposto;
-
-    cout << "Salário Bruto: " << salBruto << endl;
-    cout << "Salário a receber: " << salReceber << endl;
+    novoSalario = salario + ((salario * reajuste) / 100);
+    cout << "REAJUSTE: " << reajuste << "%" << endl;
+    cout << "NOVO SALARIO: " << novoSalario << endl;
 
     return 0;
 }
